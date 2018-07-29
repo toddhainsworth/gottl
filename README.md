@@ -9,10 +9,10 @@ Uses [github.com/jason0x43/go-toggl](github.com/jason0x43/go-toggl) for a Toggl 
 1. `./gottl`
 
 ## Todo items
-- [] Basic functionality
-- [] Tests
-- [] Custom date fetching
-- [] Missing time notification
-- [] Tests
-- [] Better configuration
-- [] Tests
+- [ ] Basic functionality
+- [ ] Tests
+- [ ] Custom date fetching
+- [ ] Missing time notification
+- [ ] Tests
+- [ ] Better configuration
+- [ ] Tests
