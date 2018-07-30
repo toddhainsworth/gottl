@@ -38,7 +38,14 @@ func main() {
 		}
 
 		for _, reportItem := range report.Data {
-			fmt.Printf("%s - %d\n", reportItem.Description, reportItem.Duration)
+            time, err := getTime(reportItem.Duration)
+
+            if err != nil {
+                fmt.Println(err)
+                return
+            }
+
+			fmt.Printf("%s - %v\n", reportItem.Description, time)
 		}
 	}
 }
@@ -65,6 +72,10 @@ func getDates() (start, end string) {
 	start = fmt.Sprintf("%d-%d-%d", y, m, d)
 	return
 
+}
+
+func getTime(ms int64) (time.Duration, error) {
+    return time.ParseDuration(fmt.Sprintf("%dms", ms))
 }
 
 func msToS(ms int64) int64 {
