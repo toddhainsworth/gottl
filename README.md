@@ -1,4 +1,4 @@
-# Gottl
+# Gottl [![Build Status](https://travis-ci.org/toddhainsworth/gottl.svg?branch=master)](https://travis-ci.org/toddhainsworth/gottl)
 _Will get_ a list of time entries and their total duration for the last five days.
 Uses [github.com/jason0x43/go-toggl](github.com/jason0x43/go-toggl) for a Toggl API interface
 
