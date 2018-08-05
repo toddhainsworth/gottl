@@ -6,7 +6,8 @@ import (
 	"strings"
 )
 
-func getAPIKey() (string, error) {
+// GetAPIKey returns the API key stored in the configuration file
+func GetAPIKey() (string, error) {
 	data, err := ioutil.ReadFile(os.ExpandEnv("$HOME/.gottl"))
 
 	if err != nil {

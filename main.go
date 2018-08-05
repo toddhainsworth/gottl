@@ -8,7 +8,7 @@ import (
 
 func main() {
 	toggl.DisableLog()
-	apiKey, err := getAPIKey()
+	apiKey, err := GetAPIKey()
 
 	if err != nil {
 		fmt.Println(err)
