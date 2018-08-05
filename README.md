@@ -9,8 +9,8 @@ Uses [github.com/jason0x43/go-toggl](github.com/jason0x43/go-toggl) for a Toggl 
 1. Get started `gottl`
 
 ## Todo items
-- [ ] Basic functionality
-- [ ] Tests
+- [x] Basic functionality
+- [x] Tests
 - [ ] Custom date fetching
 - [ ] Missing time notification
 - [ ] Tests
