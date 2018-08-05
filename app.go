@@ -1,4 +1,4 @@
-package gottl
+package main
 
 import (
 	"errors"

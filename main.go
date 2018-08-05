@@ -7,7 +7,6 @@ import (
 	"strings"
 
 	"github.com/jason0x43/go-toggl"
-	"github.com/toddhainsworth/gottl"
 )
 
 func main() {
@@ -19,7 +18,7 @@ func main() {
 		return
 	}
 
-	app := gottl.App{APIKey: apiKey}
+	app := App{APIKey: apiKey}
 	err = app.StartSession()
 
 	if err != nil {
