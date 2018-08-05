@@ -14,6 +14,11 @@ type App struct {
 	session toggl.Session
 }
 
+// NewApp creates an App struct
+func NewApp(APIKey string) App {
+	return App{APIKey: APIKey}
+}
+
 // StartSession starts a Toggl session and stores it on the App
 func (app *App) StartSession() error {
 	if app.APIKey == "" {
