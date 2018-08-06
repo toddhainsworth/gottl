@@ -50,17 +50,7 @@ func (app App) PrintReport() error {
 		}
 
 		fmt.Printf("Report for \"%s\"\n", workspace.Name)
-
-		itemsByTime := make(map[string][]toggl.DetailedTimeEntry, len(report.Data))
-		for _, reportItem := range report.Data {
-			startString := getStartString(*reportItem.Start)
-			// If the map has the time key already then we can append, otherwise insert
-			if _, ok := itemsByTime[startString]; ok {
-				itemsByTime[startString] = append(itemsByTime[startString], reportItem)
-			} else {
-				itemsByTime[startString] = []toggl.DetailedTimeEntry{reportItem}
-			}
-		}
+		itemsByTime := getItemsByTime(report)
 
 		for time, items := range itemsByTime {
 			fmt.Println(time)
@@ -73,6 +63,22 @@ func (app App) PrintReport() error {
 	}
 
 	return nil
+}
+
+// Group report items by their start time
+func getItemsByTime(report toggl.DetailedReport) map[string][]toggl.DetailedTimeEntry {
+	itemsByTime := make(map[string][]toggl.DetailedTimeEntry, len(report.Data))
+	for _, reportItem := range report.Data {
+		startString := getStartString(*reportItem.Start)
+		// If the map has the time key already then we can append, otherwise insert
+		if _, ok := itemsByTime[startString]; ok {
+			itemsByTime[startString] = append(itemsByTime[startString], reportItem)
+		} else {
+			itemsByTime[startString] = []toggl.DetailedTimeEntry{reportItem}
+		}
+	}
+
+	return itemsByTime
 }
 
 func (app App) getAccount() (toggl.Account, error) {
