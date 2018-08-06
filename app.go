@@ -106,7 +106,7 @@ func printItem(item toggl.DetailedTimeEntry) error {
 		return err
 	}
 
-	startTime, endTime := item.Start.Format("01:02"), item.End.Format("01:02")
+	startTime, endTime := item.Start.Format("15:04"), item.End.Format("15:04")
 	fmt.Printf("(%s - %s) %s - %s\n",
 		startTime, endTime, item.Description, dur.String())
 	return nil
