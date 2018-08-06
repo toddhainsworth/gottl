@@ -2,16 +2,20 @@
 
 
 [[projects]]
+  name = "github.com/go-yaml/yaml"
+  packages = ["."]
+  revision = "5420a8b6744d3b0345ab293f6fcba19c978f1183"
+  version = "v2.2.1"
+
+[[projects]]
   branch = "master"
-  digest = "1:c973b5ac6071dc9e0ad6a37bbd3b5268de5eaebdf977388d3a33f7418ac163e2"
   name = "github.com/jason0x43/go-toggl"
   packages = ["."]
-  pruneopts = ""
   revision = "43dca077f8d8eb3e54540c184b02a422600f3139"
 
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  input-imports = ["github.com/jason0x43/go-toggl"]
+  inputs-digest = "0b28c8ba18b198c1ad9b1da4a39610d341d27fbb3bc36db66e4cc8ee139a593e"
   solver-name = "gps-cdcl"
   solver-version = 1

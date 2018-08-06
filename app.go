@@ -10,8 +10,9 @@ import (
 
 // App is the main app structure
 type App struct {
-	APIKey  string
-	session toggl.Session
+	APIKey    string
+	Workspace int
+	session   toggl.Session
 }
 
 // NewApp creates an App struct
@@ -34,30 +35,22 @@ func (app App) PrintReport() error {
 	if app.session.APIToken != app.APIKey {
 		return errors.New("Session is not active")
 	}
-	account, err := app.getAccount()
+
+	start, end := getDates()
+	report, err := app.session.GetDetailedReport(app.Workspace, start, end, 1)
 
 	if err != nil {
 		return err
 	}
 
-	start, end := getDates()
-	for _, workspace := range account.Data.Workspaces {
-		// Only get the first page, any more data and we'd likely fill the terminal
-		report, err := app.session.GetDetailedReport(workspace.ID, start, end, 1)
+	fmt.Println(report)
+	itemsByTime := getItemsByTime(report)
 
-		if err != nil {
-			return err
-		}
-
-		fmt.Printf("Report for \"%s\"\n", workspace.Name)
-		itemsByTime := getItemsByTime(report)
-
-		for time, items := range itemsByTime {
-			fmt.Println(time)
-			for _, item := range items {
-				if err := printItem(item); err != nil {
-					return err
-				}
+	for time, items := range itemsByTime {
+		fmt.Println(time)
+		for _, item := range items {
+			if err := printItem(item); err != nil {
+				return err
 			}
 		}
 	}

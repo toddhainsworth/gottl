@@ -20,3 +20,7 @@
 #  version = "2.4.0"
 
 required = ["github.com/jason0x43/go-toggl"]
+
+[[constraint]]
+  name = "github.com/go-yaml/yaml"
+  version = "2.2.1"

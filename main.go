@@ -8,14 +8,14 @@ import (
 
 func main() {
 	toggl.DisableLog()
-	apiKey, err := GetAPIKey()
+	config, err := NewConfig()
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	app := App{APIKey: apiKey}
+	app := App{APIKey: config.APIKey, Workspace: config.Workspace}
 	err = app.StartSession()
 
 	if err != nil {
