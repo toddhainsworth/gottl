@@ -10,14 +10,14 @@ import (
 
 // App is the main app structure
 type App struct {
-	APIKey    string
-	Workspace int
-	session   toggl.Session
+	APIKey      string
+	WorkspaceID int
+	session     toggl.Session
 }
 
 // NewApp creates an App struct
-func NewApp(APIKey string) App {
-	return App{APIKey: APIKey}
+func NewApp(apiKey string, workspaceID int) App {
+	return App{APIKey: apiKey, WorkspaceID: workspaceID}
 }
 
 // StartSession starts a Toggl session and stores it on the App
@@ -37,7 +37,11 @@ func (app App) PrintReport() error {
 	}
 
 	start, end := getDates()
-	report, err := app.session.GetDetailedReport(app.Workspace, start, end, 1)
+	workspace, err := app.getWorkspace()
+	if err != nil {
+		return err
+	}
+	report, err := app.session.GetDetailedReport(workspace.ID, start, end, 1)
 
 	if err != nil {
 		return err
@@ -114,4 +118,20 @@ func printItem(item toggl.DetailedTimeEntry) error {
 // Converts the duration in 'ms' to long-form
 func getDuration(ms int64) (time.Duration, error) {
 	return time.ParseDuration(fmt.Sprintf("%dms", ms))
+}
+
+func (app *App) getWorkspace() (toggl.Workspace, error) {
+	account, err := app.getAccount()
+
+	if err != nil {
+		return toggl.Workspace{}, err
+	}
+
+	for _, workspace := range account.Data.Workspaces {
+		if workspace.ID == app.WorkspaceID {
+			return workspace, nil
+		}
+	}
+
+	return toggl.Workspace{}, nil
 }

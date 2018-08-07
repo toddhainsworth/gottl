@@ -15,7 +15,7 @@ func main() {
 		return
 	}
 
-	app := App{APIKey: config.APIKey, Workspace: config.Workspace}
+	app := App{APIKey: config.APIKey, WorkspaceID: config.Workspace}
 	err = app.StartSession()
 
 	if err != nil {
