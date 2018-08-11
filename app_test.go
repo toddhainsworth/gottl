@@ -5,7 +5,7 @@ import "testing"
 const APIKEY = "ABC123"
 
 func TestNewApp(t *testing.T) {
-	app := NewApp(APIKEY)
+	app := NewApp(APIKEY, 1)
 
 	if key := app.APIKey; key != APIKEY {
 		t.Fatalf("APIKeys do not match, expected \"%s\", got \"%s\"", APIKEY, key)
@@ -13,7 +13,7 @@ func TestNewApp(t *testing.T) {
 }
 
 func TestStartSession(t *testing.T) {
-	app := NewApp(APIKEY)
+	app := NewApp(APIKEY, 1)
 
 	err := app.StartSession()
 	if err != nil {

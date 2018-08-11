@@ -4,7 +4,9 @@ Uses [github.com/jason0x43/go-toggl](github.com/jason0x43/go-toggl) for a Toggl 
 
 ## Usage
 1. Install [Go](https://golang.org/dl/)
-1. Place your Toggl API key in `~/.gottl`
+1. Copy `.gottl.example` to `~/.gottl` and enter your details
+* Your API key can be found within Toggl at the bottom of your profile settings
+* The easiest way to get the ID of the workspace is by going to it's settings and grabbing the ID from the address-bar
 1. Install Gottl: `go install github.com/toddhainsworth/gottl`
 1. Get started `gottl`
 
@@ -14,5 +16,6 @@ Uses [github.com/jason0x43/go-toggl](github.com/jason0x43/go-toggl) for a Toggl 
 - [ ] Custom date fetching
 - [ ] Missing time notification
 - [ ] Tests
-- [ ] Better configuration
+- [x] Configurable account settings
+- [ ] Multiple workspaces
 - [ ] Tests
