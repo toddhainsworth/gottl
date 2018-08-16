@@ -47,7 +47,6 @@ func (app App) PrintReport() error {
 		return err
 	}
 
-	fmt.Println(report)
 	itemsByTime := getItemsByTime(report)
 
 	for time, items := range itemsByTime {
@@ -80,6 +79,24 @@ func getItemsByTime(report toggl.DetailedReport) map[string][]toggl.DetailedTime
 
 func (app App) getAccount() (toggl.Account, error) {
 	return app.session.GetAccount()
+}
+
+func (app App) PrintWorkspaces() error {
+	if app.session.APIToken != app.APIKey {
+		return errors.New("Session is not active")
+	}
+
+	account, err := app.getAccount()
+
+	if err != nil {
+		return err
+	}
+
+	for _, workspace := range account.Data.Workspaces {
+		fmt.Printf("Workspace #%d: %s", workspace.ID, workspace.Name)
+	}
+
+	return nil
 }
 
 // Get the start and end dates to send to the Toggl API
