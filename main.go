@@ -11,7 +11,11 @@ import (
 var workspaces = flag.Bool("workspaces", false, "get workspaces and their IDs")
 
 func main() {
+	// TODO: configurable
+	toggl.AppName = "Gottl Toggl Util"
+
 	toggl.DisableLog()
+
 	flag.Parse()
 	config, err := NewConfig()
 
