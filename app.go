@@ -57,6 +57,11 @@ func (app App) PrintReport() error {
 				return err
 			}
 		}
+		duration, err := getDuration(int64(report.TotalGrand))
+		if err != nil {
+			return err
+		}
+		color.Magenta("Total: %s", duration)
 	}
 
 	return nil
