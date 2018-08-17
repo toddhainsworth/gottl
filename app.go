@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/jason0x43/go-toggl"
+	"github.com/fatih/color"
 )
 
 // App is the main app structure
@@ -50,7 +51,7 @@ func (app App) PrintReport() error {
 	itemsByTime := getItemsByTime(report)
 
 	for time, items := range itemsByTime {
-		fmt.Println(time)
+		color.Green(time)
 		for _, item := range items {
 			if err := printItem(item); err != nil {
 				return err
@@ -127,8 +128,8 @@ func printItem(item toggl.DetailedTimeEntry) error {
 	}
 
 	startTime, endTime := item.Start.Format("15:04"), item.End.Format("15:04")
-	fmt.Printf("(%s - %s) %s - %s\n",
-		startTime, endTime, item.Description, dur.String())
+	startEnd := color.YellowString("(%s - %s)", startTime, endTime)
+	fmt.Printf("%s %s - %s\n", startEnd, item.Description, dur.String())
 	return nil
 }
 

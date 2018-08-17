@@ -22,4 +22,4 @@ Uses [github.com/jason0x43/go-toggl](github.com/jason0x43/go-toggl) for a Toggl 
 - [x] Configurable account settings
 - [ ] Multiple workspaces
 - [ ] Tests
-- [ ] Colours
+- [x] Colours
