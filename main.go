@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"flag"
+	"fmt"
 	"os"
 
 	"github.com/jason0x43/go-toggl"
