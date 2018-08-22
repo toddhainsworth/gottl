@@ -50,17 +50,27 @@ func (app App) PrintReport() error {
 	itemsByTime := getItemsByTime(report)
 	for time, items := range itemsByTime {
 		color.Green(time)
+		// Holding a daily tally
+		var dayDuration int64
+
 		for _, item := range items {
 			if err := printItem(item); err != nil {
 				return err
 			}
+			dayDuration += item.Duration
 		}
-		duration, err := getDuration(int64(report.TotalGrand))
+
+		duration, err := getDuration(dayDuration)
 		if err != nil {
 			return err
 		}
 		color.Magenta("Total: %s", duration)
 	}
+	duration, err := getDuration(int64(report.TotalGrand))
+	if err != nil {
+		return err
+	}
+	color.Green("Grand Total: %s", duration)
 
 	return nil
 }
