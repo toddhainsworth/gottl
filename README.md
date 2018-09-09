@@ -16,8 +16,13 @@ Uses [github.com/jason0x43/go-toggl](github.com/jason0x43/go-toggl) for a Toggl 
 ## Todo items
 - [x] Basic functionality
 - [x] Tests
+- [ ] Show current timer
+- [ ] Start/stop timer(s)
+- [ ] Ncurses based GUI (maaaaaybe)
 - [ ] Custom date fetching
+- [ ] Tests
 - [ ] Missing time notification
+- [ ] Binary for installation
 - [ ] Tests
 - [x] Configurable account settings
 - [ ] Multiple workspaces
