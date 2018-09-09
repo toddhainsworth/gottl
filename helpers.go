@@ -9,8 +9,10 @@ import (
 )
 
 // Group report items by their start time
-func getItemsByTime(report toggl.DetailedReport) map[string][]toggl.DetailedTimeEntry {
+func getItemsByTime(report toggl.DetailedReport) ([]string, map[string][]toggl.DetailedTimeEntry) {
 	itemsByTime := make(map[string][]toggl.DetailedTimeEntry, len(report.Data))
+	keys := []string{}
+
 	for _, reportItem := range report.Data {
 		startString := getStartString(*reportItem.Start)
 		// If the map has the time key already then we can append, otherwise insert
@@ -18,10 +20,11 @@ func getItemsByTime(report toggl.DetailedReport) map[string][]toggl.DetailedTime
 			itemsByTime[startString] = append(itemsByTime[startString], reportItem)
 		} else {
 			itemsByTime[startString] = []toggl.DetailedTimeEntry{reportItem}
+			keys = append(keys, startString)
 		}
 	}
 
-	return itemsByTime
+	return keys, itemsByTime
 }
 
 // Get the start and end dates to send to the Toggl API

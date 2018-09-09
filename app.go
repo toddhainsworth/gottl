@@ -38,18 +38,23 @@ func (app App) PrintReport() error {
 
 	start, end := getDates()
 	workspace, err := app.getWorkspace()
+
 	if err != nil {
 		return err
 	}
+
 	report, err := app.session.GetDetailedReport(workspace.ID, start, end, 1)
 
 	if err != nil {
 		return err
 	}
 
-	itemsByTime := getItemsByTime(report)
-	for time, items := range itemsByTime {
-		color.Green(time)
+	dates, itemsByTime := getItemsByTime(report)
+
+	for _, date := range dates {
+		items := itemsByTime[date]
+
+		color.Green(date)
 		// Holding a daily tally
 		var dayDuration int64
 
