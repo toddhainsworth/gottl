@@ -71,6 +71,7 @@ func (app App) PrintReport() error {
 		}
 		color.Magenta("Total: %s", duration)
 	}
+
 	duration, err := getDuration(int64(report.TotalGrand))
 	if err != nil {
 		return err
@@ -98,7 +99,7 @@ func (app App) PrintWorkspaces() error {
 	}
 
 	for _, workspace := range account.Data.Workspaces {
-		fmt.Printf("Workspace #%d: %s", workspace.ID, workspace.Name)
+		fmt.Printf("Workspace #%d: %s\n", workspace.ID, workspace.Name)
 	}
 
 	return nil
