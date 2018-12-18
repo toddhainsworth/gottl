@@ -2,3 +2,4 @@ vendor
 gottl
 *.swp
 .tags
+.vscode/
