@@ -20,7 +20,7 @@
 #  version = "2.4.0"
 
 # Has not got 'dep' setup so we need to use 'required' rather than define a constraint for it
-required = ["github.com/jason0x43/go-toggl"]
+required = ["github.com/machiel/go-toggl"]
 
 [[constraint]]
   name = "github.com/go-yaml/yaml"

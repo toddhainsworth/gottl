@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/fatih/color"
-	"github.com/jason0x43/go-toggl"
+	toggl "github.com/machiel/go-toggl"
 )
 
 // App is the main app structure
@@ -28,6 +28,33 @@ func (app *App) StartSession() error {
 
 	app.session = toggl.OpenSession(app.APIKey)
 	return nil
+}
+
+// PrintCurrentTimer prints the current running timer (if available) to STDOUT
+func (app App) PrintCurrentTimer() error {
+	if app.session.APIToken != app.APIKey {
+		return errors.New("Session is not active")
+	}
+
+	account, err := app.session.GetAccount()
+
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(account.Data.Timezone)
+
+	entry, err := app.session.GetCurrentTimeEntry()
+
+	if !entry.IsRunning() {
+		return errors.New("No current timer")
+	}
+
+	if err != nil {
+		return err
+	}
+
+	return printTimeEntry(entry)
 }
 
 // PrintReport fetches time entries and constructs a report for the CLI
@@ -59,7 +86,7 @@ func (app App) PrintReport() error {
 		var dayDuration int64
 
 		for _, item := range items {
-			if err := printItem(item); err != nil {
+			if err := printDetailedTimeEntry(item); err != nil {
 				return err
 			}
 			dayDuration += item.Duration

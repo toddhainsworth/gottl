@@ -5,10 +5,11 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/jason0x43/go-toggl"
+	toggl "github.com/machiel/go-toggl"
 )
 
 var workspaces = flag.Bool("workspaces", false, "get workspaces and their IDs")
+var current = flag.Bool("current", false, "get the currently running timer (if available)")
 
 func main() {
 	// TODO: configurable
@@ -21,7 +22,7 @@ func main() {
 
 	if err != nil {
 		fmt.Println(err)
-		return
+		os.Exit(1)
 	}
 
 	if *workspaces {
@@ -31,6 +32,11 @@ func main() {
 		os.Exit(0)
 	}
 
+	if config.Workspace <= 0 {
+		fmt.Println("No workspace configured, run again with --workspaces to find your workspace ID")
+		os.Exit(1)
+	}
+
 	app := App{APIKey: config.APIKey, WorkspaceID: config.Workspace}
 	err = app.StartSession()
 
@@ -38,7 +44,11 @@ func main() {
 		fmt.Println(err)
 	}
 
-	err = app.PrintReport()
+	if *current {
+		err = app.PrintCurrentTimer()
+	} else {
+		err = app.PrintReport()
+	}
 
 	if err != nil {
 		fmt.Println(err)

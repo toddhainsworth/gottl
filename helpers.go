@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/fatih/color"
-	toggl "github.com/jason0x43/go-toggl"
+	toggl "github.com/machiel/go-toggl"
 )
 
 // Group report items by their start time
@@ -48,16 +48,33 @@ func getStartString(time time.Time) string {
 }
 
 // Print the given item in the regular format
-func printItem(item toggl.DetailedTimeEntry) error {
+func printDetailedTimeEntry(item toggl.DetailedTimeEntry) error {
 	dur, err := getDuration(item.Duration)
 
 	if err != nil {
 		return err
 	}
 
-	startTime, endTime := item.Start.Format("15:04"), item.End.Format("15:04")
+	startTime, endTime := item.Start.Local().Format("15:04"), item.End.Local().Format("15:04")
 	startEnd := color.YellowString("(%s - %s)", startTime, endTime)
 	fmt.Printf("%s %s - %s\n", startEnd, item.Description, dur.String())
+	return nil
+}
+
+// Print the given item in the regular format
+// This needs heeeaaavvvyyyyy refactoring to reduce duplication from printDetailedTimeEntry above
+func printTimeEntry(item toggl.TimeEntry) error {
+	if item.IsRunning() {
+		startTime := item.Start.Local().Format("15:04")
+		duration, err := getDuration(item.Duration)
+
+		if err != nil {
+			return err
+		}
+
+		fmt.Printf("%s %s - %d\n", startTime, item.Description, duration)
+	}
+
 	return nil
 }
 
