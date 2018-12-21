@@ -20,11 +20,14 @@
 #  version = "2.4.0"
 
 # Has not got 'dep' setup so we need to use 'required' rather than define a constraint for it
-required = ["github.com/machiel/go-toggl"]
 
 [[constraint]]
   name = "github.com/go-yaml/yaml"
   version = "2.2.1"
+
+[[constraint]]
+  name = "github.com/machiel/go-toggl"
+  branch = "get-current-time-entry"
 
 [[constraint]]
   name = "github.com/fatih/color"

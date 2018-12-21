@@ -18,12 +18,12 @@
   version = "v2.2.2"
 
 [[projects]]
-  branch = "master"
-  digest = "1:c973b5ac6071dc9e0ad6a37bbd3b5268de5eaebdf977388d3a33f7418ac163e2"
+  branch = "get-current-time-entry"
+  digest = "1:7ed8072ae80b87156c339e8a6c42bd0353b99612af40f69637d11f0aecaacc88"
   name = "github.com/machiel/go-toggl"
   packages = ["."]
   pruneopts = ""
-  revision = "43dca077f8d8eb3e54540c184b02a422600f3139"
+  revision = "a79778d73de4a22c37134375cf77c7fc3a39895c"
 
 [[projects]]
   digest = "1:9ea83adf8e96d6304f394d40436f2eb44c1dc3250d223b74088cc253a6cd0a1c"

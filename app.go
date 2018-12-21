@@ -36,14 +36,6 @@ func (app App) PrintCurrentTimer() error {
 		return errors.New("Session is not active")
 	}
 
-	account, err := app.session.GetAccount()
-
-	if err != nil {
-		return err
-	}
-
-	fmt.Println(account.Data.Timezone)
-
 	entry, err := app.session.GetCurrentTimeEntry()
 
 	if !entry.IsRunning() {
