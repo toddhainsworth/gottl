@@ -33,8 +33,9 @@ func getDates() (start, end string) {
 	y, m, d := endDate.Date()
 	end = fmt.Sprintf("%d-%d-%d", y, m, d)
 
-	// Subtract 5 days
-	startDate := endDate.AddDate(0, 0, -5)
+	// TODO: Make this configurable
+	// Subtract 1 day
+	startDate := endDate.AddDate(0, 0, -1)
 	y, m, d = startDate.Date()
 	start = fmt.Sprintf("%d-%d-%d", y, m, d)
 	return
