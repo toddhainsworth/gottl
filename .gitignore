@@ -1,5 +1,5 @@
-vendor
 gottl
 *.swp
 .tags
 .vscode/
+vendor/golang.org
