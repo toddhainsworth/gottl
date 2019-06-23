@@ -18,6 +18,30 @@
   version = "v2.2.2"
 
 [[projects]]
+  branch = "master"
+  digest = "1:7a0e6d66ee406118a2271a6af67be285b9a793dff7bc9a85ff15f5b28a958ef3"
+  name = "github.com/jason0x43/go-toggl"
+  packages = ["."]
+  pruneopts = ""
+  revision = "ace5c0956787672a1789b602f3ddf80e770c0836"
+
+[[projects]]
+  digest = "1:3108ec0946181c60040ff51b811908f89d03e521e2b4ade5ef5c65b3c0e911ae"
+  name = "github.com/kr/pretty"
+  packages = ["."]
+  pruneopts = ""
+  revision = "73f6ac0b30a98e433b289500d779f50c1a6f0712"
+  version = "v0.1.0"
+
+[[projects]]
+  digest = "1:11b056b4421396ab14e384ab8ab8c2079b03f1e51aa5eb4d9b81f9e0d1aa8fbf"
+  name = "github.com/kr/text"
+  packages = ["."]
+  pruneopts = ""
+  revision = "e2ffdb16a802fe2bb95e2e35ff34f0e53aeef34f"
+  version = "v0.1.0"
+
+[[projects]]
   branch = "get-current-time-entry"
   digest = "1:7ed8072ae80b87156c339e8a6c42bd0353b99612af40f69637d11f0aecaacc88"
   name = "github.com/machiel/go-toggl"
@@ -45,9 +69,34 @@
   branch = "master"
   digest = "1:3737a150825b50646e512a5a146a9494be5b5bfaabb7ba3a97b44c24e42b572c"
   name = "golang.org/x/sys"
-  packages = ["unix"]
+  packages = [
+    "cpu",
+    "unix",
+    "windows",
+    "windows/registry",
+    "windows/svc",
+    "windows/svc/debug",
+    "windows/svc/eventlog",
+    "windows/svc/mgr",
+  ]
   pruneopts = ""
   revision = "8ff4e546d48be377a38a3ab13ef2dd4dd8dce06a"
+
+[[projects]]
+  branch = "v1"
+  digest = "1:1d01f96bc2293b56c3dec797b8f976d7613fb30ce92bfbc994130404f7f7f031"
+  name = "gopkg.in/check.v1"
+  packages = ["."]
+  pruneopts = ""
+  revision = "788fd78401277ebd861206a03c884797c6ec5541"
+
+[[projects]]
+  digest = "1:cedccf16b71e86db87a24f8d4c70b0a855872eb967cb906a66b95de56aefbd0d"
+  name = "gopkg.in/yaml.v2"
+  packages = ["."]
+  pruneopts = ""
+  revision = "51d6538a90f86fe93ac480b35f37b2be17fef232"
+  version = "v2.2.2"
 
 [solve-meta]
   analyzer-name = "dep"
@@ -55,7 +104,20 @@
   input-imports = [
     "github.com/fatih/color",
     "github.com/go-yaml/yaml",
+    "github.com/jason0x43/go-toggl",
     "github.com/machiel/go-toggl",
+    "github.com/mattn/go-colorable",
+    "github.com/mattn/go-isatty",
+    "golang.org/x/sys/cpu",
+    "golang.org/x/sys/unix",
+    "golang.org/x/sys/windows",
+    "golang.org/x/sys/windows/registry",
+    "golang.org/x/sys/windows/svc",
+    "golang.org/x/sys/windows/svc/debug",
+    "golang.org/x/sys/windows/svc/eventlog",
+    "golang.org/x/sys/windows/svc/mgr",
+    "gopkg.in/check.v1",
+    "gopkg.in/yaml.v2",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

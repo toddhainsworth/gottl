@@ -39,7 +39,6 @@ func getDates() (start, end string) {
 	y, m, d = startDate.Date()
 	start = fmt.Sprintf("%d-%d-%d", y, m, d)
 	return
-
 }
 
 func getStartString(time time.Time) string {
@@ -80,5 +79,10 @@ func printTimeEntry(item toggl.TimeEntry) error {
 
 // Converts the duration in 'ms' to long-form
 func getDuration(ms int64) (time.Duration, error) {
+	// If the ms value is negative then it's actually the time since epoch
+	if ms < 0 {
+		second := ms + time.Now().Unix()
+		return time.ParseDuration(fmt.Sprintf("%ds", second))
+	}
 	return time.ParseDuration(fmt.Sprintf("%dms", ms))
 }
