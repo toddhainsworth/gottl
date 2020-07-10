@@ -2,4 +2,4 @@ gottl
 *.swp
 .tags
 .vscode/
-vendor/golang.org
+vendor/
